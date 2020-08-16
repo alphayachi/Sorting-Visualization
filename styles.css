@@ -1,0 +1,67 @@
+.sorting-bars{
+    display: inline-block;
+    background: black;
+    width: 4px;
+    height: 300px;
+}
+
+#one{
+    height: 100px;
+}
+#two{
+    height: 120px;
+}
+#three{
+    height: 130px;
+}
+#four{
+    height: 140px;
+}
+#five{
+    height: 150px;
+}
+#six{
+    height: 160px;
+}
+#seven{
+    height: 170px;
+}
+#eight{
+    height: 180px;
+}
+#nine{
+    height: 190px;
+}
+#ten{
+    height: 200px;
+}
+#eleven{
+    height: 210px;
+}
+#twelve{
+    height: 220px;
+}
+#thirteen{
+    height: 230px;
+}
+#fourteen{
+    height: 240px;
+}
+#fifteen{
+    height: 250px;
+}
+#sixteen{
+    height: 260px;
+}
+#seventeen{
+    height: 280px;
+}
+#eighteen{
+    height: 290px;
+}
+#nineteen{
+    height: 300px;
+}
+#twenty{
+    height: 310px;
+}
