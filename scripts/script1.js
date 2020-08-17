@@ -1,10 +1,10 @@
 const graphBox = document.querySelector('.graph-box');
 
-//Selection Sort
+//bubble Sort
 
-const selectionSort = function(graph){
-    const sortingbars = graph.childNodes;
-    sortingbars.forEach((bar, i) => {
+const bubbleSort = function(graph){
+    var sortingbars = graph.querySelectorAll('.sorting-bars');
+    Array.from(sortingbars).forEach((bar, i) => {
         setTimeout(() => {
             sortingbars.forEach((compbar, j) => {
                 setTimeout(() => {
@@ -22,4 +22,32 @@ const selectionSort = function(graph){
     });
 }
 
-selectionSort(graphBox);
+
+//Selection Sort
+
+
+const selectionSort = function(graph){
+    const sortingbars = Array.from(graph.querySelectorAll('.sorting-bars'));
+    const sortingbarsLength = sortingbars.length;
+    for(let i=0; i<sortingbarsLength; i++){
+        let min = i;
+        setTimeout(() => {
+            for(let j=i; j<sortingbarsLength; j++){
+                var minHeight = sortingbars[min].offsetHeight;
+                var jHeight = sortingbars[j].offsetHeight;
+                if(minHeight > jHeight){
+                    min = j;
+                }
+            }
+            var heightmin = sortingbars[min].offsetHeight;
+            var iheight = sortingbars[i].offsetHeight;
+            sortingbars[i].style.height = `${heightmin}px`;
+            sortingbars[min].style.height = `${iheight}px`;
+        }, i*100);
+        
+    }
+}
+
+
+
+
