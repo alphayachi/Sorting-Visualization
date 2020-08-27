@@ -1,0 +1,66 @@
+const Merge = function(l, mid, r, sortingbars){
+    let i=0;
+    let j=0;
+    let k=l;
+    let n1 = mid - l + 1;
+    let n2 = r - mid;
+    
+
+    /*while(i<n1){
+        left[i] = sortingbars[k];
+        i++;
+        k++;
+    }*/
+    let left = sortingbars.cloneNode();
+    //left = Array.from(sortingbars).slice(l, mid+1);
+    /*while(j<n2){
+        right[j] = sortingbars[k];
+        j++;
+        k++;
+    }*/
+    let right = sortingbars.cloneNode();
+    //right = Array.from(sortingbars).slice(mid+1, r+1);
+    i=0;
+    j=0;
+    k=l;
+
+    console.log(right);
+
+    while(i<n1 && j<n2){
+        let leftHeight = left[i+l].offsetHeight;
+        let rightHeight = right[j+mid+1].offsetHeight;
+        if(leftHeight < rightHeight){
+            Array.from(sortingbars)[k].parentNode.replaceChild(left[i], Array.from(sortingbars)[k]);
+            i++;
+            k++;
+        }else{
+            Array.from(sortingbars)[k].parentNode.replaceChild(right[j], Array.from(sortingbars)[k]);
+            j++;
+            k++;
+        }
+    }
+    while(i<n1){
+        Array.from(sortingbars)[k].parentNode.replaceChild(left[i], Array.from(sortingbars)[k]);
+        i++;
+        k++;
+    }
+    while(j<n2){
+        Array.from(sortingbars)[k].parentNode.replaceChild(right[j], Array.from(sortingbars)[k]);
+        j++;
+        k++;
+    }
+}
+
+
+const MergeSort = function(l, r, sortingbars){
+    if(l<r){
+        let mid = (l+r)/2;
+
+        
+        MergeSort(l, mid, sortingbars);
+        MergeSort(mid+1, r, sortingbars);
+        Merge(l, mid, r, sortingbars);
+            
+        
+    }
+}

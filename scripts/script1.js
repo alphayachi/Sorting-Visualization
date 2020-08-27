@@ -35,8 +35,8 @@ const bubbleSort = async function(){
 
 
 const selectionSort = async function(){
-    const sortingbars = graphBox.querySelectorAll('.sorting-bars');
-    const bars = Array.from(sortingbars);
+    var sortingbars = graphBox.querySelectorAll('.sorting-bars');
+    var bars = Array.from(sortingbars);
     for(let i=0; i<bars.length-1; i++){
         let min = i;
         
@@ -50,7 +50,7 @@ const selectionSort = async function(){
                     min = j;
                 }
                 resolve();
-            }, 100));
+            }, 10));
             sortingbars[j].style.background ="red";
             sortingbars[min].style.background = "green";
         }
@@ -67,47 +67,72 @@ const selectionSort = async function(){
     sortingbars[bars.length-1].style.background ="blue";
 }
 
-//Merge Sort
 
-const Merge = function(arrayb, arrayc){
-    var arrayd = [];
-    if(arrayb.length==0 && arrayc.length==0){
-        return arrayd;
-    }else if(arrayb.length==0){
-        arrayd.concat(arrayc);
-        return arrayd;
-    }else if(arrayc.length==0){
-        arrayd.concat(arrayb);
-        return arrayd;
+
+//Merge Sort --------- ERROR ERROR ERROR ERROR---------------
+//ERRORS DO IT LATER
+
+const merge = (arr1, arr2, arr) => {
+    //let sorted = [];
+
+    let k = 0;
+    while (arr1.length && arr2.length) {
+        if (arr1[0].offsetHeight < arr2[0].offsetHeight) arr[k].parentNode.replaceChild(arr1.shift(), arr[k]);
+        else arr[k].parentNode.replaceChild(arr2.shift(), arr[k]);
+    };
+
+    while(arr1.length >0){
+        arr[k].parentNode.replaceChild(arr1.shift(), arr[0]);
     }
-    if(arrayb[0]<=arrayc[0]){
-        let value = arrayb.shift();
-        arrayd.push(value);
-        Merge(arrayb, arrayc);
-    }else{
-        let value = arrayc.shift();
-        arrayd.push(value);
-        Merge(arrayb, arrayc);
+    while(arr2.length >0){
+        arr[k].parentNode.replaceChild(arr2.shift(), arr[0]);
     }
+  
+    return arr;
+};
+
+const mergeSort = function(arr){
+    if (arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+
+    return merge(left, right, arr);
+};
+//-------^^^^^^^-----ERROR ERROR ERROR ERROR ---------^^^^^^^^-------------
+
+//insertion sort
+
+const insertionSort = async function(){
+    var sortingbars = graphBox.querySelectorAll('.sorting-bars');
+    var bars = Array.from(sortingbars);
+    let n = bars.length;
+    for(let i=1; i<n; i++){
+        let current = sortingbars[i].offsetHeight;
+        let j = i-1;
+        //color coding 
+        sortingbars[i].style.background = 'green';
+        while(j>-1 && (current < sortingbars[j].offsetHeight)){
+            sortingbars[j].style.background ='yellow';
+            await new Promise(resolve => setTimeout(() => {
+                
+                let height = sortingbars[j].offsetHeight;
+                sortingbars[j+1].style.height =`${height}px`;
+                sortingbars[j].style.background ='blue';
+                j--;
+
+                resolve();
+            }, 50));
+        }
+
+        sortingbars[j+1].style.height = `${current}px`;
+        sortingbars[i].style.background = 'blue';
+        
+    }
+
 }
 
-const mergeSort = function(){
-    const sortingbars = graphBox.querySelectorAll('.sorting-bars')
-    const bars = Array.from(sortingbars);
-    var height = [];
-    for(let i=0; i<bars.length; i++){
-        height[i] = sortingbars[i].offsetHeight;
-    }
-    if(height.length==1){
-        return height;
-    }
-    var m = height.length / 2;
-    var arrayb = mergeSort(arrayb.slice(0, m-1));
-    var arrayc = mergeSort(array.slice(m)); 
-    var resArray = Merge(arrayb, arrayc);
 
-    return resArray;
-}
 
 const randIntGenerator = function(min,max){
     return Math.floor(Math.random() * (max-min) + min);
@@ -127,5 +152,16 @@ const GenerateRandomBars = function(){
     }
 }
 
+
+
 GenerateRandomBars();
-selectionSort(graphBox);
+
+insertionSort();
+
+
+//var sortingbars = graphBox.querySelectorAll('.sorting-bars');
+///var bars = Array.from(sortingbars);
+
+
+
+
