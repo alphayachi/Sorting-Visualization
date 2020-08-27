@@ -19,7 +19,7 @@ const bubbleSort = async function(){
                     sortingbars[j+1].style.height = `${heightofj}px`;
                 }
                 resolve();
-            }, 200));
+            }, 15));
                 
             sortingbars[j].style.background = 'red';
         }
@@ -134,6 +134,13 @@ const insertionSort = async function(){
 
 
 
+//QuickSort finally ..... XD
+
+const quickSort = function(){
+
+}
+
+
 const randIntGenerator = function(min,max){
     return Math.floor(Math.random() * (max-min) + min);
 }
@@ -149,16 +156,14 @@ const GenerateRandomBars = function(){
         array[i] = height;
         let bar = graphBox.querySelectorAll('.sorting-bars');
         bar[i].style.height = `${height}px`;
+        bar[i].style.background = 'red';
     }
 }
 
 
 
-GenerateRandomBars();
-
-insertionSort();
-
-
+//GenerateRandomBars();
+//insertionSort();
 //var sortingbars = graphBox.querySelectorAll('.sorting-bars');
 ///var bars = Array.from(sortingbars);
 
