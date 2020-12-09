@@ -1,6 +1,13 @@
-.sorting-bars{
-    display: inline-block;
-    background: red;
-    width: 7px;
+.sorting-bars {
+  display: inline-block;
+  width: 7px;
 }
 
+.graph-box {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  height: 420px;
+  padding-top: 15px;
+  background: #f1f1f198;
+}

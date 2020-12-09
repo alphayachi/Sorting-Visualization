@@ -72,33 +72,64 @@ const selectionSort = async function(){
 //Merge Sort --------- ERROR ERROR ERROR ERROR---------------
 //ERRORS DO IT LATER
 
-const merge = (arr1, arr2, arr) => {
-    //let sorted = [];
+const mergeSort = function(){
+    let sortingbars = graphBox.querySelectorAll('.sorting-bars');
+    let bars = Array.from(sortingbars);
+    let n = sortingbars.length;
+    for(let curr_size=1; curr_size<=n-1; curr_size = 2*curr_size){
+        for(let left_start=0; left_start<n-1; left_start += 2*curr_size){
+            console.log('innerloop updated');
+            let mid = Math.min((left_start+curr_size-1), n-1);
+            let right_end = Math.min((left_start+2*curr_size-1), n-1);
 
-    let k = 0;
-    while (arr1.length && arr2.length) {
-        if (arr1[0].offsetHeight < arr2[0].offsetHeight) arr[k].parentNode.replaceChild(arr1.shift(), arr[k]);
-        else arr[k].parentNode.replaceChild(arr2.shift(), arr[k]);
-    };
 
-    while(arr1.length >0){
-        arr[k].parentNode.replaceChild(arr1.shift(), arr[0]);
+            let left_arr = [];
+            let right_arr = [];
+            let index = 0;
+            for(let i=left_start; i<=mid; i++){
+                left_arr[index] = sortingbars[i].offsetHeight; 
+                index++;
+            }
+            index = 0;
+            for(let i=mid+1; i<=right_end; i++){
+                right_arr[index] = sortingbars[i].offsetHeight;
+                index++; 
+            }
+            let i=0;
+            let j=0;
+            let k = left_start;
+            let n1 = mid-left_start+1;
+            let n2 = right_end-mid;
+            while(i<n1 && j<n2){
+                if(left_arr[i] <= right_arr[j]){
+                    let minHeight = left_arr[i];
+                    sortingbars[k].style.height = `${minHeight}px`;
+                    i++;
+                } else{
+                    let minHeight = right_arr[j];
+                    sortingbars[k].style.height = `${minHeight}px`;
+                    j++;
+                }
+                k++;
+            }
+            while(i<n1){
+                let minHeight = left_arr[i];
+                sortingbars[k].style.height = `${minHeight}px`;
+                i++;
+                k++;
+            }
+            while(j<n2){
+                let minHeight = right_arr[j];
+                sortingbars[k].style.height = `${minHeight}px`;
+                j++;
+                k++;
+            }
+
+
+
+        }
     }
-    while(arr2.length >0){
-        arr[k].parentNode.replaceChild(arr2.shift(), arr[0]);
-    }
-  
-    return arr;
-};
-
-const mergeSort = function(arr){
-    if (arr.length <= 1) return arr;
-    let mid = Math.floor(arr.length / 2);
-    const left = mergeSort(arr.slice(0, mid));
-    const right = mergeSort(arr.slice(mid));
-
-    return merge(left, right, arr);
-};
+}
 //-------^^^^^^^-----ERROR ERROR ERROR ERROR ---------^^^^^^^^-------------
 
 //insertion sort
@@ -148,6 +179,8 @@ const randIntGenerator = function(min,max){
 
 const GenerateRandomBars = function(){
     
+    graphBox.innerHTML = '';
+
     for(let i=0; i<50; i++){
         graphBox.innerHTML += `
             <div class="sorting-bars"></div>
