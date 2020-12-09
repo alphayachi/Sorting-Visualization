@@ -8,8 +8,8 @@ const bubbleSort = async function(){
     for(let i=0; i<bars.length-1; i++){
 
         for(let j=0; j<bars.length-i-1; j++){
-            sortingbars[j].style.background = 'green';
-            sortingbars[j+1].style.background = 'green';
+            sortingbars[j].style.background = '#000';
+            sortingbars[j+1].style.background = '#000';
             await new Promise(resolve => setTimeout(() => {
                 
                 let heightofj = sortingbars[j].offsetHeight;
@@ -19,15 +19,15 @@ const bubbleSort = async function(){
                     sortingbars[j+1].style.height = `${heightofj}px`;
                 }
                 resolve();
-            }, 15));
+            },70));
                 
-            sortingbars[j].style.background = 'red';
+            sortingbars[j].style.background = 'rgb(143, 109, 197)';
         }
 
-        sortingbars[bars.length-i-1].style.background ="blue";
+        sortingbars[bars.length-i-1].style.background ="#cc0066";
         
     }
-    sortingbars[0].style.background ="blue";
+    sortingbars[0].style.background ="#cc0066";
 }
 
 
@@ -41,30 +41,30 @@ const selectionSort = async function(){
         let min = i;
         
         for(let j=i; j<bars.length; j++){
-            sortingbars[j].style.background ="pink";
+            sortingbars[j].style.background ="#ffbb33";
             await new Promise(resolve => setTimeout(() => {
                 let heightMin = sortingbars[min].offsetHeight;
                 let heightj = sortingbars[j].offsetHeight;
                 if(heightMin >= heightj){
-                    sortingbars[min].style.background = "red";
+                    sortingbars[min].style.background = "rgb(143, 109, 197)";
                     min = j;
                 }
                 resolve();
-            }, 10));
-            sortingbars[j].style.background ="red";
-            sortingbars[min].style.background = "green";
+            }, 50));
+            sortingbars[j].style.background ="rgb(143, 109, 197)";
+            sortingbars[min].style.background = "#000";
         }
 
         let minHeight  = sortingbars[min].offsetHeight;
         let heighti = sortingbars[i].offsetHeight;
         sortingbars[i].style.height = `${minHeight}px`;
         sortingbars[min].style.height = `${heighti}px`;
-        sortingbars[min].style.background = "red";
-        sortingbars[i].style.background = "blue";
+        sortingbars[min].style.background = "rgb(143, 109, 197)";
+        sortingbars[i].style.background = "#cc0066";
         
 
     }
-    sortingbars[bars.length-1].style.background ="blue";
+    sortingbars[bars.length-1].style.background ="#cc0066";
 }
 
 
@@ -72,13 +72,13 @@ const selectionSort = async function(){
 //Merge Sort --------- ERROR ERROR ERROR ERROR---------------
 //ERRORS DO IT LATER
 
-const mergeSort = function(){
+const mergeSort = async function(){
     let sortingbars = graphBox.querySelectorAll('.sorting-bars');
     let bars = Array.from(sortingbars);
     let n = sortingbars.length;
     for(let curr_size=1; curr_size<=n-1; curr_size = 2*curr_size){
+
         for(let left_start=0; left_start<n-1; left_start += 2*curr_size){
-            console.log('innerloop updated');
             let mid = Math.min((left_start+curr_size-1), n-1);
             let right_end = Math.min((left_start+2*curr_size-1), n-1);
 
@@ -101,6 +101,15 @@ const mergeSort = function(){
             let n1 = mid-left_start+1;
             let n2 = right_end-mid;
             while(i<n1 && j<n2){
+                sortingbars[k].style.background = '#000';
+
+                //ANimation timeout herrrrreeee ......
+
+                await new Promise(resolve => setTimeout(() => {
+                    resolve();
+                }, 100));
+                
+                
                 if(left_arr[i] <= right_arr[j]){
                     let minHeight = left_arr[i];
                     sortingbars[k].style.height = `${minHeight}px`;
@@ -110,8 +119,10 @@ const mergeSort = function(){
                     sortingbars[k].style.height = `${minHeight}px`;
                     j++;
                 }
+                sortingbars[k].style.background = '#cc0066';
                 k++;
             }
+            sortingbars[k].style.background = '#cc0066';
             while(i<n1){
                 let minHeight = left_arr[i];
                 sortingbars[k].style.height = `${minHeight}px`;
@@ -142,22 +153,22 @@ const insertionSort = async function(){
         let current = sortingbars[i].offsetHeight;
         let j = i-1;
         //color coding 
-        sortingbars[i].style.background = 'green';
+        sortingbars[i].style.background = '#000';
         while(j>-1 && (current < sortingbars[j].offsetHeight)){
-            sortingbars[j].style.background ='yellow';
+            sortingbars[j].style.background ='#ffbb33';
             await new Promise(resolve => setTimeout(() => {
                 
                 let height = sortingbars[j].offsetHeight;
                 sortingbars[j+1].style.height =`${height}px`;
-                sortingbars[j].style.background ='blue';
+                sortingbars[j].style.background ='#cc0066';
                 j--;
 
                 resolve();
-            }, 50));
+            }, 200));
         }
 
         sortingbars[j+1].style.height = `${current}px`;
-        sortingbars[i].style.background = 'blue';
+        sortingbars[i].style.background = '#cc0066';
         
     }
 
@@ -189,7 +200,7 @@ const GenerateRandomBars = function(){
         array[i] = height;
         let bar = graphBox.querySelectorAll('.sorting-bars');
         bar[i].style.height = `${height}px`;
-        bar[i].style.background = 'red';
+        bar[i].style.background = 'rgb(143, 109, 197)';
     }
 }
 
