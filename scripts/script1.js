@@ -69,8 +69,8 @@ const selectionSort = async function(){
 
 
 
-//Merge Sort --------- ERROR ERROR ERROR ERROR---------------
-//ERRORS DO IT LATER
+//Merge Sort-------------------------------------------
+
 
 const mergeSort = async function(){
     let sortingbars = graphBox.querySelectorAll('.sorting-bars');
@@ -141,7 +141,7 @@ const mergeSort = async function(){
         }
     }
 }
-//-------^^^^^^^-----ERROR ERROR ERROR ERROR ---------^^^^^^^^-------------
+
 
 //insertion sort
 
@@ -179,6 +179,43 @@ const insertionSort = async function(){
 //QuickSort finally ..... XD
 
 const quickSort = function(){
+    let sortingbars = graphBox.querySelectorAll('.sorting-bars');
+    let record = [];
+    let top = -1;
+    let e = sortingbars.length - 1;
+
+    record[++top] = 0;
+    record[++top] = e;
+    while(top>=0){
+        e = record[top--];
+        let s = record[top--];
+
+        let i = s-1;
+        for(let j=s; j<e; j++){
+            if(sortingbars[j].offsetHeight <= sortingbars[e].offsetHeight){
+                i++;
+                let minHeight = sortingbars[j].offsetHeight;
+                let maxHeight = sortingbars[i].offsetHeight;
+                sortingbars[j].style.height = `${maxHeight}px`;
+                sortingbars[i].style.height = `${minHeight}px`;
+            }
+        }
+        let minHeight = sortingbars[i+1].offsetHeight;
+        let pivHeight = sortingbars[e].offsetHeight;
+        sortingbars[e].style.height = `${minHeight}px`;
+        sortingbars[i+1].style.height = `${pivHeight}px`;
+        i++;
+
+
+        if(i-1>s){
+            record[++top] = s;
+            record[++top] = i-1;
+        }
+        if(i+1 < e){
+            record[++top] = i+1;
+            record[++top] = e;
+        }
+    }
 
 }
 
