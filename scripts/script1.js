@@ -19,7 +19,7 @@ const bubbleSort = async function(){
                     sortingbars[j+1].style.height = `${heightofj}px`;
                 }
                 resolve();
-            },70));
+            },150));
                 
             sortingbars[j].style.background = 'rgb(143, 109, 197)';
         }
@@ -164,7 +164,7 @@ const insertionSort = async function(){
                 j--;
 
                 resolve();
-            }, 200));
+            }, 300));
         }
 
         sortingbars[j+1].style.height = `${current}px`;
@@ -178,7 +178,7 @@ const insertionSort = async function(){
 
 //QuickSort finally ..... XD
 
-const quickSort = function(){
+const quickSort = async function(){
     let sortingbars = graphBox.querySelectorAll('.sorting-bars');
     let record = [];
     let top = -1;
@@ -189,31 +189,58 @@ const quickSort = function(){
     while(top>=0){
         e = record[top--];
         let s = record[top--];
-
+        
         let i = s-1;
         for(let j=s; j<e; j++){
+            sortingbars[j].style.background = '#ffbb33';
+            sortingbars[e].style.background = '#000';
+            await new Promise(resolve => setTimeout(() => {
+                resolve();
+            }, 200));
             if(sortingbars[j].offsetHeight <= sortingbars[e].offsetHeight){
+                sortingbars[j].style.background = '#009933';
+                if(i>=s){
+                    sortingbars[i].style.background = 'rgb(143, 109, 197)';
+                }
                 i++;
+                sortingbars[i].style.background = '#009933';
+                
+                await new Promise(resolve => setTimeout(() => {
+                    resolve();
+                }, 500));
+                
                 let minHeight = sortingbars[j].offsetHeight;
                 let maxHeight = sortingbars[i].offsetHeight;
                 sortingbars[j].style.height = `${maxHeight}px`;
                 sortingbars[i].style.height = `${minHeight}px`;
             }
+            
+            sortingbars[j].style.background = 'rgb(143, 109, 197)';
+            
         }
         let minHeight = sortingbars[i+1].offsetHeight;
         let pivHeight = sortingbars[e].offsetHeight;
         sortingbars[e].style.height = `${minHeight}px`;
         sortingbars[i+1].style.height = `${pivHeight}px`;
+        sortingbars[e].style.background = 'rgb(143, 109, 197)';
+        if(i>=s){
+            sortingbars[i].style.background = 'rgb(143, 109, 197)';
+        }
         i++;
+        sortingbars[i].style.background = '#cc0066';
 
 
         if(i-1>s){
             record[++top] = s;
             record[++top] = i-1;
+        }else{
+            sortingbars[s].style.background = '#cc0066';
         }
         if(i+1 < e){
             record[++top] = i+1;
             record[++top] = e;
+        }else{
+            sortingbars[e].style.background = '#cc0066';
         }
     }
 
