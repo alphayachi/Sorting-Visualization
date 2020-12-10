@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Hanged;
+  src: url(./custom-fonts/Hanged\ Letters.ttf);
+}
+@font-face {
+  font-family: paper-banner;
+  src: url(./custom-fonts/Paper\ Banner-Bold.ttf);
+}
+
 .sorting-bars {
   display: inline-block;
   width: 0.5%;
@@ -11,4 +20,33 @@
   height: 420px;
   background: #f1f1f1;
   padding-top: 10px;
+  margin-bottom: 25px;
+}
+
+.page-heading {
+  background: rgba(0, 0, 0, 0.83);
+  padding: 0px;
+  text-align: center;
+}
+
+.app-name {
+  font-family: Hanged;
+  font-size: 40px;
+  color: #f1f1f1;
+  padding: 0px;
+  margin: 0px;
+}
+
+.page-footer {
+  background: rgba(0, 0, 0, 0.83);
+  padding: 0px;
+  text-align: center;
+}
+
+.creator-name {
+  font-family: paper-banner;
+  font-size: 40px;
+  color: #f1f1f1;
+  padding: 0px;
+  margin: 0px;
 }
